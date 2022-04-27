@@ -11,11 +11,24 @@ using DF.RealEstate.MultiTenancy;
 using DF.RealEstate.MultiTenancy.Accounting;
 using DF.RealEstate.MultiTenancy.Payments;
 using DF.RealEstate.Storage;
+using DF.RealEstate.Entities.Homes;
+using DF.RealEstate.Entities.Addresses;
 
 namespace DF.RealEstate.EntityFrameworkCore
 {
     public class RealEstateDbContext : AbpZeroDbContext<Tenant, Role, User, RealEstateDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<Home> Homes { get; set; }
+        public virtual DbSet<Advertisement> Advertisements { get; set; }
+        public virtual DbSet<Amenity> Amenities { get; set; }
+        public virtual DbSet<AmenityTranslation> AmenityTranslations { get; set; }
+        public virtual DbSet<HomeAmenity> HomeAmenities { get; set; }
+        public virtual DbSet<HomePhoto> HomePhotos { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Province> Provinces { get; set; }
+
         /* Define an IDbSet for each entity of the application */
 
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
