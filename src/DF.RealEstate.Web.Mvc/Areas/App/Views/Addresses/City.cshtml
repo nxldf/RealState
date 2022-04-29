@@ -1,0 +1,56 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Addresses
+
+@model AddressModel
+
+
+@section Scripts
+{
+    <script src="/view-resources/Areas/App/Views/Addresses/City.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <abp-page-subheader title="@L("City")" description="">
+        <button id="Back" class="btn btn-dark">@L("Back")</button>
+        <button id="CreateNewBtn" class="btn btn-primary">
+            <i class="fa fa-plus"></i> @L("AddNewCity")
+        </button>
+
+        <input type="hidden" id="ProvinceId" name="ProvinceId" value="@ViewBag.ProvinceId" />
+        <input type="hidden" id="CountryId" name="CountryId" value="@ViewBag.CountryId" />
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="form">
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group align-items-center">
+                                <div class="input-group">
+                                    <input type="text" id="TableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                    <span class="input-group-btn">
+                                        <button id="GetButton" class="btn btn-primary" type="submit">
+                                            <i class="flaticon-search-1" aria-label="@L("Search")"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="align-items-center">
+                    <table id="DataTable" class="display table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>@L("Actions")</th>
+                                <th>@L("Name")</th>
+                                <th>@L("Slug")</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -90,6 +90,10 @@ namespace DF.RealEstate.Authorization
             dynamicEntityPropertyValues.CreateChildPermission(AppPermissions.Pages_Administration_DynamicEntityPropertyValue_Edit, L("EditingDynamicEntityPropertyValue"));
             dynamicEntityPropertyValues.CreateChildPermission(AppPermissions.Pages_Administration_DynamicEntityPropertyValue_Delete, L("DeletingDynamicEntityPropertyValue"));
 
+            var addresses = administration.CreateChildPermission(AppPermissions.Pages_Administration_Addresses, L("Addresses"));
+            addresses.CreateChildPermission(AppPermissions.Pages_Administration_Addresses_CreateOrEdit, L("CreateOrEditAddresses"));
+            addresses.CreateChildPermission(AppPermissions.Pages_Administration_Addresses_Delete, L("DeleteAddresses"));
+
             //TENANT-SPECIFIC PERMISSIONS
 
             pages.CreateChildPermission(AppPermissions.Pages_Tenant_Dashboard, L("Dashboard"), multiTenancySides: MultiTenancySides.Tenant);

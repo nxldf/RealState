@@ -18,6 +18,10 @@
         public const string Pages_Administration_Roles_Edit = "Pages.Administration.Roles.Edit";
         public const string Pages_Administration_Roles_Delete = "Pages.Administration.Roles.Delete";
 
+        public const string Pages_Administration_Addresses = "Pages.Administration.Addresses";
+        public const string Pages_Administration_Addresses_CreateOrEdit = "Pages.Administration.Addresses.CreateOrEdit";
+        public const string Pages_Administration_Addresses_Delete = "Pages.Administration.Addresses.Delete";
+
         public const string Pages_Administration_Users = "Pages.Administration.Users";
         public const string Pages_Administration_Users_Create = "Pages.Administration.Users.Create";
         public const string Pages_Administration_Users_Edit = "Pages.Administration.Users.Edit";

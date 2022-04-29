@@ -41,12 +41,17 @@ using DF.RealEstate.Notifications.Dto;
 using DF.RealEstate.Organizations.Dto;
 using DF.RealEstate.Sessions.Dto;
 using DF.RealEstate.WebHooks.Dto;
+using DF.RealEstate.Entities.Addresses;
+using DF.RealEstate.Entities.Addresses.Dto;
+using DF.RealEstate.Entities.Homes.Aminities.Dto;
+using DF.RealEstate.Entities.Homes;
+using Abp.AutoMapper;
 
 namespace DF.RealEstate
 {
     internal static class CustomDtoMapper
     {
-        public static void CreateMappings(IMapperConfigurationExpression configuration)
+        public static void CreateMappings(IMapperConfigurationExpression configuration, MultiLingualMapContext context)
         {
             //Inputs
             configuration.CreateMap<CheckboxInputType, FeatureInputTypeDto>();
@@ -76,7 +81,7 @@ namespace DF.RealEstate
             configuration.CreateMap<Role, RoleListDto>();
             configuration.CreateMap<UserRole, UserListRoleDto>();
 
-            
+
 
             //Edition
             configuration.CreateMap<EditionEditDto, SubscribableEdition>().ReverseMap();
@@ -159,11 +164,32 @@ namespace DF.RealEstate
             configuration.CreateMap<DynamicEntityPropertyDto, DynamicEntityProperty>();
 
             configuration.CreateMap<DynamicEntityPropertyValue, DynamicEntityPropertyValueDto>().ReverseMap();
-            
+
             //User Delegations
             configuration.CreateMap<CreateUserDelegationDto, UserDelegation>();
 
             /* ADD YOUR OWN CUSTOM AUTOMAPPER MAPPINGS HERE */
+
+            // Country
+            configuration.CreateMap<Country, CountryListDto>();
+            configuration.CreateMap<Country, GetForEditCountryDto>();
+            configuration.CreateMap<CreateOrUpdateCountryDto, Country>();
+            //City
+            configuration.CreateMap<City, CityListDto>();
+            configuration.CreateMap<City, GetForEditCityDto>();
+            configuration.CreateMap<CreateOrUpdateCityDto, City>();
+            //province
+            configuration.CreateMap<Province, ProvinceListDto>();
+            configuration.CreateMap<Province, GetForEditProvinceDto>();
+            configuration.CreateMap<CreateOrUpdateProvinceDto, Province>();
+            //District
+            configuration.CreateMap<District, DistrictListDto>();
+            configuration.CreateMap<District, GetForEditDistrictDto>();
+            configuration.CreateMap<CreateOrUpdateDistrictDto, District>();
+
+            //Aminity
+            configuration.CreateMultiLingualMap<Amenity, AmenityTranslation, AminityListDto>(context);
+
         }
     }
 }

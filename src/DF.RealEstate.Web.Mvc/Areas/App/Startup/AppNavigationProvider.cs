@@ -13,6 +13,19 @@ namespace DF.RealEstate.Web.Areas.App.Startup
         {
             var menu = context.Manager.Menus[MenuName] = new MenuDefinition(MenuName, new FixedLocalizableString("Main Menu"));
 
+            var address = new MenuItemDefinition(
+                        AppPageNames.Common.Administration,
+                        L("Addresses"),
+                        icon: "flaticon-interface-8"
+                  ).AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.Administration,
+                        L("Address"),
+                        url: "App/Addresses",
+                        icon: "flaticon-shapes",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Addresses)
+                     )
+                  );
+
             menu
                 .AddItem(new MenuItemDefinition(
                         AppPageNames.Host.Dashboard,
@@ -141,7 +154,11 @@ namespace DF.RealEstate.Web.Areas.App.Startup
                         icon: "flaticon-shapes",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_DemoUiComponents)
                     )
-                );
+                )
+                .AddItem(address);
+
+
+
         }
 
         private static ILocalizableString L(string name)

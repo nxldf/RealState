@@ -1,4 +1,5 @@
 ﻿using Abp.AutoMapper;
+using Abp.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using DF.RealEstate.Authorization;
@@ -20,7 +21,15 @@ namespace DF.RealEstate
             Configuration.Authorization.Providers.Add<AppAuthorizationProvider>();
 
             //Adding custom AutoMapper configuration
-            Configuration.Modules.AbpAutoMapper().Configurators.Add(CustomDtoMapper.CreateMappings);
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(configuration =>
+            {
+                CustomDtoMapper.CreateMappings(configuration, new MultiLingualMapContext(
+                    IocManager.Resolve<ISettingManager>()
+                ));
+            });
+
+            //Adding custom AutoMapper configuration
+            //Configuration.Modules.AbpAutoMapper().Configurators.Add(CustomDtoMapper.CreateMappings);
         }
 
         public override void Initialize()

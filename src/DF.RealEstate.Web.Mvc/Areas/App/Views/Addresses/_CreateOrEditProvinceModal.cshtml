@@ -1,0 +1,24 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Addresses
+@using DF.RealEstate.Web.Areas.App.Models.Common.Modals;
+
+@model GetForEditProvinceModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.Id.HasValue ? (L("EditProvince") + ": " + Model.Name) : L("AddNewProvince")))
+
+<div class="modal-body">
+    <form name="ModalForm" role="form" novalidate class="form-validation">
+        @if (Model.Id.HasValue)
+        {
+            <input type="hidden" name="Id" value="@Model.Id.Value" />
+        }
+        <input type="hidden" id="CountryId" name="CountryId" value="@ViewBag.CountryId" />
+        <div class="form-group">
+            <label for="Name">@L("Name")</label>
+            <input id="Name" type="text" name="Name" class="form-control" value="@Model.Name" required />
+        </div>
+
+
+    </form>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

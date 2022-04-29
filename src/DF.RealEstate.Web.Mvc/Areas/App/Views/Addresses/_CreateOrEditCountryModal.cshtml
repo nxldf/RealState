@@ -1,0 +1,36 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Addresses
+@using DF.RealEstate.Web.Areas.App.Models.Common.Modals;
+
+@model GetForEditCountryModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.Id.HasValue ? (L("EditCountry") + ": " + Model.Name) : L("AddNewCountry")))
+
+<div class="modal-body">
+    <form name="ModalForm" role="form" novalidate class="form-validation">
+        @if (Model.Id.HasValue)
+        {
+            <input type="hidden" name="Id" value="@Model.Id.Value" />
+        }
+
+        <div class="form-group">
+            <label for="Name">@L("Name")</label>
+            <input id="Name" type="text" name="Name" class="form-control" value="@Model.Name" required />
+        </div>
+        <div class="form-group">
+            <label for="Code">@L("Code")</label>
+            <input id="Code" type="text" name="Code" class="form-control" value="@Model.Code" required />
+        </div>
+        <div class="form-group">
+            <label for="Abbreviation">@L("Abbreviation")</label>
+            <input id="Abbreviation" type="text" name="Abbreviation" class="form-control" value="@Model.Abbreviation" required />
+        </div>
+        <div class="form-group">
+            <label for="Flag">@L("Flag")</label>
+            <input id="Flag" type="text" name="Flag" class="form-control" value="@Model.Flag" />
+        </div>
+
+
+    </form>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
