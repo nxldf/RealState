@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Abp.Application.Services.Dto;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DF.RealEstate.Entities.Homes.Aminities.Dto
+namespace DF.RealEstate.Entities.Homes.Amenities.Dto
 {
-    public class AminityListDto
+    public class AmenityListDto : EntityDto
     {
         public string AdminName { get; set; }
         public string Name { get; set; }

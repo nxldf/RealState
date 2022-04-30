@@ -22,6 +22,10 @@
         public const string Pages_Administration_Addresses_CreateOrEdit = "Pages.Administration.Addresses.CreateOrEdit";
         public const string Pages_Administration_Addresses_Delete = "Pages.Administration.Addresses.Delete";
 
+        public const string Pages_Administration_Amenities = "Pages.Administration.Amenities";
+        public const string Pages_Administration_Amenities_CreateOrEdit = "Pages.Administration.Amenities.CreateOrEdit";
+        public const string Pages_Administration_Amenities_Delete = "Pages.Administration.Amenities.Delete";
+
         public const string Pages_Administration_Users = "Pages.Administration.Users";
         public const string Pages_Administration_Users_Create = "Pages.Administration.Users.Create";
         public const string Pages_Administration_Users_Edit = "Pages.Administration.Users.Edit";

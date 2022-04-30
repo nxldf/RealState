@@ -1,23 +1,19 @@
-﻿@using DF.RealEstate.Web.Areas.App.Models.Addresses
+﻿@using DF.RealEstate.Web.Areas.App.Models.Amenities
 
-@model AddressViewModel
+@model AmenityViewModel
 
 
 @section Scripts
 {
-    <script src="/view-resources/Areas/App/Views/Addresses/District.js" asp-append-version="true"></script>
+    <script src="/view-resources/Areas/App/Views/Amenities/Index.js" asp-append-version="true"></script>
 }
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <abp-page-subheader title="@L("District")" description="">
-        <button id="Back" class="btn btn-dark">@L("Back")</button>
-        <button id="CreateNewBtn" class="btn btn-primary">
-            <i class="fa fa-plus"></i> @L("AddNewDistrict")
-        </button>
+    <abp-page-subheader title="@L("Amenities")" description="">
 
-        <input type="hidden" id="CityId" name="CityId" value="@ViewBag.CityId" />
-        <input type="hidden" id="ProvinceId" name="ProvinceId" value="@ViewBag.ProvinceId" />
-        <input type="hidden" id="CountryId" name="CountryId" value="@ViewBag.CountryId" />
+        <button id="CreateNewBtn" class="btn btn-primary">
+            <i class="fa fa-plus"></i> @L("AddNewAmenity")
+        </button>
     </abp-page-subheader>
 
     <div class="@(await GetContainerClass())">
@@ -46,7 +42,8 @@
                                 <th></th>
                                 <th>@L("Actions")</th>
                                 <th>@L("Name")</th>
-                                <th>@L("ZipCode")</th>
+                                <th>@L("AdminName")</th>
+                                <th>@L("Description")</th>
                             </tr>
                         </thead>
                     </table>

@@ -43,9 +43,9 @@ using DF.RealEstate.Sessions.Dto;
 using DF.RealEstate.WebHooks.Dto;
 using DF.RealEstate.Entities.Addresses;
 using DF.RealEstate.Entities.Addresses.Dto;
-using DF.RealEstate.Entities.Homes.Aminities.Dto;
 using DF.RealEstate.Entities.Homes;
 using Abp.AutoMapper;
+using DF.RealEstate.Entities.Homes.Amenities.Dto;
 
 namespace DF.RealEstate
 {
@@ -188,8 +188,10 @@ namespace DF.RealEstate
             configuration.CreateMap<CreateOrUpdateDistrictDto, District>();
 
             //Aminity
-            configuration.CreateMultiLingualMap<Amenity, AmenityTranslation, AminityListDto>(context);
-
+            configuration.CreateMultiLingualMap<Amenity, AmenityTranslation, AmenityListDto>(context);
+            configuration.CreateMap<CreateOrEditAmenityDto, Amenity>();
+            configuration.CreateMap<Amenity, GetForEditAmenityDto>();
+            configuration.CreateMap<AmenityTranslation, AmenityTranslationDto>().ReverseMap();
         }
     }
 }

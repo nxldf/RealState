@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DF.RealEstate.Entities.Homes.Aminities.Dto
+namespace DF.RealEstate.Entities.Homes.Amenities.Dto
 {
     public class GetAllAminitiesInput : PagedAndSortedInputDto, IShouldNormalize
     {

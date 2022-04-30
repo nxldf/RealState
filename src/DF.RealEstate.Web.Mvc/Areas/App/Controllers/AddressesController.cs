@@ -26,7 +26,7 @@ namespace DF.RealEstate.Web.Areas.App.Controllers
 
         public ActionResult Index()
         {
-            var model = new AddressModel
+            var model = new AddressViewModel
             {
                 FilterText = "",
             };
@@ -40,7 +40,7 @@ namespace DF.RealEstate.Web.Areas.App.Controllers
             if (!countryId.HasValue)
                 throw new UserFriendlyException("CountryId Is Null ");
 
-            var model = new AddressModel
+            var model = new AddressViewModel
             {
                 FilterText = "",
             };
@@ -54,7 +54,7 @@ namespace DF.RealEstate.Web.Areas.App.Controllers
             if (!provinceId.HasValue)
                 throw new UserFriendlyException("ProvinceId Is Null ");
 
-            var model = new AddressModel
+            var model = new AddressViewModel
             {
                 FilterText = "",
             };
@@ -69,7 +69,7 @@ namespace DF.RealEstate.Web.Areas.App.Controllers
             if (!provinceId.HasValue)
                 throw new UserFriendlyException("ProvinceId Is Null ");
 
-            var model = new AddressModel
+            var model = new AddressViewModel
             {
                 FilterText = "",
             };

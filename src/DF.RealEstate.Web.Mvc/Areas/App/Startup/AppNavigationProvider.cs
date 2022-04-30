@@ -26,6 +26,26 @@ namespace DF.RealEstate.Web.Areas.App.Startup
                      )
                   );
 
+            var homes = new MenuItemDefinition(
+                    AppPageNames.Common.Administration,
+                    L("HomesMenu"),
+                    icon: "flaticon-interface-8"
+                 ).AddItem(new MenuItemDefinition(
+                    AppPageNames.Common.Administration,
+                    L("Amenities"),
+                    url: "App/Amenities",
+                    icon: "flaticon-shapes",
+                    permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Amenities)
+                    )
+                 //).AddItem(new MenuItemDefinition(
+                 //       AppPageNames.Common.Administration,
+                 //       L("Homes"),
+                 //       url: "App/Homes",
+                 //       icon: "flaticon-map",
+                 //       permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Amenities)
+                 //   )
+                 );
+
             menu
                 .AddItem(new MenuItemDefinition(
                         AppPageNames.Host.Dashboard,
@@ -155,7 +175,8 @@ namespace DF.RealEstate.Web.Areas.App.Startup
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_DemoUiComponents)
                     )
                 )
-                .AddItem(address);
+                .AddItem(address)
+                .AddItem(homes);
 
 
 
