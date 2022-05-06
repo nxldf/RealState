@@ -42,10 +42,14 @@ using DF.RealEstate.Organizations.Dto;
 using DF.RealEstate.Sessions.Dto;
 using DF.RealEstate.WebHooks.Dto;
 using DF.RealEstate.Entities.Addresses;
-using DF.RealEstate.Entities.Addresses.Dto;
 using DF.RealEstate.Entities.Homes;
 using Abp.AutoMapper;
-using DF.RealEstate.Entities.Homes.Amenities.Dto;
+using DF.RealEstate.Homes.Dto;
+using DF.RealEstate.Homes.Amenities.Dto;
+using DF.RealEstate.Addresses.Districts.Dto;
+using DF.RealEstate.Addresses.Provinces.Dto;
+using DF.RealEstate.Addresses.Cities.Dto;
+using DF.RealEstate.Addresses.Countries.Dto;
 
 namespace DF.RealEstate
 {
@@ -192,6 +196,11 @@ namespace DF.RealEstate
             configuration.CreateMap<CreateOrEditAmenityDto, Amenity>();
             configuration.CreateMap<Amenity, GetForEditAmenityDto>();
             configuration.CreateMap<AmenityTranslation, AmenityTranslationDto>().ReverseMap();
+
+            //Home
+            configuration.CreateMap<Home, HomeListDto>();
+            configuration.CreateMap<Home, GetForEditHomeDto>().ReverseMap();
+            configuration.CreateMap<CreateOrUpdateHomeDto, Home>();
         }
     }
 }

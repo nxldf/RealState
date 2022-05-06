@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DF.RealEstate.Web.Areas.App.Models.Homes
 {
-    public class AmenityViewModel
+    public class HomesViewModel
     {
         public string FilterText { get; set; }
     }

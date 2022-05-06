@@ -1,4 +1,4 @@
-﻿(function ($) {
+﻿(function () {
     app.modals.CreateOrEditAmenityModal = function () {
 
         var _modalManager;

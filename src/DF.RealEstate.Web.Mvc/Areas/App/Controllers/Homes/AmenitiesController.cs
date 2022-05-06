@@ -2,8 +2,8 @@
 using Abp.AspNetCore.Mvc.Authorization;
 using Abp.Localization;
 using DF.RealEstate.Authorization;
-using DF.RealEstate.Entities.Homes.Amenities;
-using DF.RealEstate.Entities.Homes.Amenities.Dto;
+using DF.RealEstate.Homes.Amenities;
+using DF.RealEstate.Homes.Amenities.Dto;
 using DF.RealEstate.Web.Areas.App.Models.Amenities;
 using DF.RealEstate.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;

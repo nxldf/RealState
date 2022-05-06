@@ -37,13 +37,13 @@ namespace DF.RealEstate.Web.Areas.App.Startup
                     icon: "flaticon-shapes",
                     permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Amenities)
                     )
-                 //).AddItem(new MenuItemDefinition(
-                 //       AppPageNames.Common.Administration,
-                 //       L("Homes"),
-                 //       url: "App/Homes",
-                 //       icon: "flaticon-map",
-                 //       permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Amenities)
-                 //   )
+                ).AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.Administration,
+                        L("Homes"),
+                        url: "App/Homes",
+                        icon: "flaticon-map",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Homes)
+                    )
                  );
 
             menu

@@ -1,0 +1,126 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Advertisements
+@using DF.RealEstate.Entities;
+
+@model GetForEditAdvertisementModel
+
+@section Styles
+{
+    @*<link rel="stylesheet" href="~/Kendo/styles/kendo.common.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/Kendo/styles/kendo.default-v2.min.css" asp-append-version="true" />*@
+}
+
+@section Scripts
+{
+    <script src="/view-resources/Areas/App/Views/Homes/AdvertisementTab.js" asp-append-version="true"></script>
+}
+
+<input type="hidden" id="mainId" asp-for="Id" />
+
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <abp-page-subheader title="">
+
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+
+        <div class="d-flex flex-row">
+
+            <div class="flex-row-fluid ">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card card-custom card-stretch gutter-b">
+                            <div class="card-header card-header-tabs-line">
+                                <div class="card-title">
+                                    <h3 class="card-title font-weight-bolder text-dark">@L("EditInformation")</h3>
+                                </div>
+                                <div class="card-toolbar">
+                                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = ViewBag.Id, Title = "Advertisement" })
+                                </div>
+                            </div>
+                            <div class="card-body pt-2">
+                                <form name="informationsForm">
+                                    <div>
+                                        <input type="hidden" asp-for="Id" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Type">@L("Type")</label>
+                                        <select id="Type" name="Type" class="form-control bs-select" asp-for="Type" title="Choose One Of The Following...">
+
+                                            @foreach (var type in Enum.GetValues<AdvertisementType>())
+                                            {
+                                                <option value="@((int)type)">@type</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="NetPrice">@L("NetPrice")</label>
+                                        <input id="NetPrice" type="text" name="NetPrice" class="form-control decimal-input-mask  text-left" value="@Model.NetPrice">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="AvailableDate">@L("AvailableDate")</label>
+                                        <input id="AvailableDate" type="text" name="AvailableDate" class="form-control date-picker" value="@Model.AvailableDate" />
+
+                                    </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label">@L("HideAddress")</label>
+                                            <div class="col-md-1">
+                                                <span class="switch switch-outline switch-icon switch-success">
+                                                    <label>
+                                                        <input type="checkbox" @Html.Raw(Model.HideAddress ? "checked=\" checked\"" : "") name="HideAddress">
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            <label class="col-md-3 col-form-label">@L("HidePreciseLocation")</label>
+                                            <div class="col-md-1">
+                                                <span class="switch switch-outline switch-icon switch-success">
+                                                    <label>
+                                                        <input type="checkbox" @Html.Raw(Model.HidePreciseLocation ? "checked=\" checked\"" : "") name="HidePreciseLocation">
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            <label class="col-md-3 col-form-label">@L("ContactByPhone")</label>
+                                            <div class="col-md-1">
+                                                <span class="switch switch-outline switch-icon switch-success">
+                                                    <label>
+                                                        <input type="checkbox" @Html.Raw(Model.ContactByPhone ? "checked=\" checked\"" : "") name="ContactByPhone">
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    <div class="form-group row">
+                                            <label class="col-md-3 col-form-label">@L("ContactByEmail")</label>
+                                            <div class="col-md-1">
+                                                <span class="switch switch-outline switch-icon switch-success">
+                                                    <label>
+                                                        <input type="checkbox" @Html.Raw(Model.ContactByEmail ? "checked=\" checked\"" : "") name="ContactByEmail">
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            <label class="col-md-3 col-form-label">@L("ContactSiteMessage")</label>
+                                            <div class="col-md-1">
+                                                <span class="switch switch-outline switch-icon switch-success">
+                                                    <label>
+                                                        <input type="checkbox" @Html.Raw(Model.ContactSiteMessage ? "checked=\" checked\"" : "") name="ContactSiteMessage">
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

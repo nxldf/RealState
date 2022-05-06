@@ -98,6 +98,10 @@ namespace DF.RealEstate.Authorization
             amenities.CreateChildPermission(AppPermissions.Pages_Administration_Amenities_CreateOrEdit, L("CreateOrEditAmenities"));
             amenities.CreateChildPermission(AppPermissions.Pages_Administration_Amenities_Delete, L("DeleteAmenities"));
 
+            var homes = administration.CreateChildPermission(AppPermissions.Pages_Administration_Homes, L("Homes"));
+            homes.CreateChildPermission(AppPermissions.Pages_Administration_Homes_CreateOrEdit, L("CreateOrEditHomes"));
+            homes.CreateChildPermission(AppPermissions.Pages_Administration_Homes_Delete, L("DeleteHomes"));
+
             //TENANT-SPECIFIC PERMISSIONS
 
             pages.CreateChildPermission(AppPermissions.Pages_Tenant_Dashboard, L("Dashboard"), multiTenancySides: MultiTenancySides.Tenant);

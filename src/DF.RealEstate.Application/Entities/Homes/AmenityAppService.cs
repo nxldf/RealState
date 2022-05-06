@@ -3,7 +3,6 @@ using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using DF.RealEstate.Authorization;
-using DF.RealEstate.Entities.Homes.Amenities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +11,12 @@ using Abp.Linq.Extensions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
-using DF.RealEstate.Entities.Homes.Amenities;
+using DF.RealEstate.Homes.Amenities.Dto;
+using DF.RealEstate.Homes.Amenities;
 
 namespace DF.RealEstate.Entities.Homes
 {
-    public class AmenityAppService : RealEstateAppServiceBase , IAmenityAppService
+    public class AmenityAppService : RealEstateAppServiceBase, IAmenityAppService
     {
         private readonly IRepository<Amenity> _amenityRepository;
 
@@ -26,7 +26,7 @@ namespace DF.RealEstate.Entities.Homes
         }
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
-        //[SwaggerHidden]
+        [SwaggerHidden]
         public async Task<PagedResultDto<AmenityListDto>> GetAll(GetAllAminitiesInput input)
         {
             var query = _amenityRepository.GetAllIncluding(x => x.Translations)
@@ -44,7 +44,7 @@ namespace DF.RealEstate.Entities.Homes
         }
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Amenities_CreateOrEdit)]
-        //[SwaggerHidden]
+        [SwaggerHidden]
         public async Task CreateOrEdit(CreateOrEditAmenityDto input)
         {
             if (!input.Id.HasValue)
@@ -76,7 +76,7 @@ namespace DF.RealEstate.Entities.Homes
         }
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Amenities_Delete)]
-        //[SwaggerHidden]
+        [SwaggerHidden]
         public async Task Delete(EntityDto input)
         {
             var res = await _amenityRepository.FirstOrDefaultAsync(x => x.Id == input.Id);
@@ -84,7 +84,7 @@ namespace DF.RealEstate.Entities.Homes
         }
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
-        //[SwaggerHidden]
+        [SwaggerHidden]
         public async Task<GetForEditAmenityDto> GetForEdit(NullableIdDto input)
         {
             if (input.Id.HasValue)

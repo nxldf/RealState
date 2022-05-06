@@ -1,0 +1,174 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Homes
+@using DF.RealEstate.Entities;
+
+@model GetForEditHomeModel
+
+@section Styles
+{
+    @*<link rel="stylesheet" href="~/Kendo/styles/kendo.common.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/Kendo/styles/kendo.default-v2.min.css" asp-append-version="true" />*@
+}
+
+@section Scripts
+{
+    <script src="/view-resources/Areas/App/Views/Homes/Detail.js" asp-append-version="true"></script>
+}
+
+<input type="hidden" id="mainId" asp-for="Id" />
+<input type="hidden" id="defaultCountryId" value="@Model.District.City.Province.CountryId" />
+<input type="hidden" id="defaultProvinceId" value="@Model.District.City.ProvinceId" />
+<input type="hidden" id="defualtCityId" value="@Model.District.CityId" />
+<input type="hidden" id="defualtDistrictId" value="@Model.DistrictId" />
+
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <abp-page-subheader title="">
+
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+
+        <div class="d-flex flex-row">
+
+            <div class="flex-row-fluid ">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card card-custom card-stretch gutter-b">
+                            <div class="card-header card-header-tabs-line">
+                                <div class="card-title">
+                                    <h3 class="card-title font-weight-bolder text-dark">@L("EditInformation")</h3>
+                                </div>
+                                <div class="card-toolbar">
+                                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = (int)Model.Id.Value, Title = "Detail" })
+                                </div>
+                            </div>
+                            <div class="card-body pt-2">
+
+                                <form name="informationsForm">
+                                    <div>
+                                        <input type="hidden" asp-for="Id" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Name">@L("Name")</label>
+                                                <input id="Name" type="text" name="Name" class="form-control" value="@Model.Name" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ZipCode">@L("ZipCode")</label>
+                                                <input id="ZipCode" type="text" name="ZipCode" class="form-control" value="@Model.ZipCode" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="type">@L("Type")</label>
+                                                <select id="type" name="Type" class="form-control bs-select" asp-for="type" title="Choose One Of The Following...">
+
+                                                    @foreach (var type in Enum.GetValues<PropertyType>())
+                                                    {
+                                                        <option value="@((int)type)">@type</option>
+                                                    }
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Bedrooms">@L("Bedrooms")</label>
+                                                <input id="Bedrooms" type="text" name="Bedrooms" class="form-control" value="@Model.Bedrooms" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Bathrooms">@L("Bathrooms")</label>
+                                                <input id="Bathrooms" type="text" name="Bathrooms" class="form-control" value="@Model.Bathrooms" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Space">@L("Space")</label>
+                                                <input id="Space" type="text" name="Space" class="form-control" value="@Model.Space" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CountryId">@L("Country")</label>
+                                                <select style="width: 100%" class="form-control" id="CountryDropdown">
+                                                    <option value="" selected hidden>Select...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@L("Province")</label>
+                                                <select style="width: 100%" id="Province" class="form-control" >
+                                                    <option value="" selected hidden>Select One Country...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@L("City")</label>
+                                                <select style="width: 100%" id="City" class="form-control" >
+                                                    <option value="" selected hidden>Select A Province...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DistrictId">@L("District")</label>
+                                                <select style="width: 100%" id="District" class="form-control" name="DistrictId">
+                                                    <option value="" selected hidden>Select A City...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Address">@L("Address")</label>
+                                                <input id="Address" type="text" name="Address" class="form-control" value="@Model.Address" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Description">@L("Description")</label>
+                                                <input id="Description" type="text" name="Description" class="form-control" value="@Model.Description" />
+                                            </div>
+                                        </div>
+
+                                        @*<div class="form-group row col-md-12">*@
+                                        @*<div class="form-row col-md-12 ">*@
+
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                <label for="Longitude">@L("Longitude")</label>
+                                                <input id="Longitude" type="text" name="Longitude" class="form-control" value="@Model.Longitude" />
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label for="Longitude">@L("Longitude")</label>
+                                                <input id="Longitude" type="text" name="Longitude" class="form-control " value="@Model.Longitude" />
+
+                                            </div>
+                                            <div class="col-md-1 form-inline">
+                                                <label></label>
+                                                <button type="button" id="OpenBtn" class="btn btn-primary pull-right form-inline">@L("Open")</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+
+                                            <div class="text-right">
+                                                <button type="button" id="saveInfoBtn" class="btn btn-danger ">@L("Save")</button>
+                                            </div>
+                                        </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@model DF.RealEstate.Dto.IdTitleDto
+
+<ul class="nav nav-tabs nav-bold nav-tabs-line">
+    <li class="nav-item">
+        <a class="nav-link @(Model.Title == "Detail" ? "active" : "")" href="/app/Homes/Detail?id=@Model.Id">@L("Detail")</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(Model.Title == "Advertisement" ? "active" : "")" href="/app/Homes/AdvertisementTab?id=@Model.Id">@L("Advertisement")</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(Model.Title == "Photos" ? "active" : "")" href="/app/Homes/HomePhoto?EventId=@Model.Id">@L("Photos")</a>
+    </li>
+</ul>

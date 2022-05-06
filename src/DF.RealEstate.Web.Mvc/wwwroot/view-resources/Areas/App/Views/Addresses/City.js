@@ -2,7 +2,7 @@
     app.modals.CreateOrEditCityModal = function () {
 
         var _modalManager;
-        var _mService = abp.services.app.address;
+        var _mService = abp.services.app.city;
         var _$InformationForm = null;
 
         this.init = function (modalManager) {
@@ -35,7 +35,7 @@
 (function () {
     $(function () {
         var _$dTable = $('#DataTable');
-        var _mService = abp.services.app.address;
+        var _mService = abp.services.app.city;
 
 
         var _permissions = {

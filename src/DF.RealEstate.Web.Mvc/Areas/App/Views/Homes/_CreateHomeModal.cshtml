@@ -1,0 +1,86 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Homes
+@using DF.RealEstate.Web.Areas.App.Models.Common.Modals;
+@using DF.RealEstate.Entities;
+
+@model GetForEditHomeModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(@L("AddNewHome")))
+
+<div class="modal-body">
+    <form name="ModalForm" role="form" novalidate class="form-validation">
+
+        <div class="form-group">
+            <label for="Name">@L("Name")</label>
+            <input id="Name" type="text" name="Name" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="ZipCode">@L("ZipCode")</label>
+            <input id="ZipCode" type="text" name="ZipCode" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="type">@L("Type")</label>
+            <select id="type" name="Type" class="form-control bs-select" asp-for="type" title="Choose One Of The Following...">
+
+                @foreach (var type in Enum.GetValues<PropertyType>())
+                {
+                    <option value="@((int)type)">@type</option>
+                }
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Bedrooms">@L("Bedrooms")</label>
+            <input id="Bedrooms" type="text" name="Bedrooms" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="Bathrooms">@L("Bathrooms")</label>
+            <input id="Bathrooms" type="text" name="Bathrooms" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="Space">@L("Space")</label>
+            <input id="Space" type="text" name="Space" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="CountryId">@L("Country")</label>
+            <select style="width: 100%" class="form-control" id="CountryDropDown" asp-for="District.City.Province.Country.Id">
+                @*<option value="" selected hidden>Select A Country...</option>*@
+            </select>
+        </div>
+        <div class="form-group">
+            <label>@L("Province")</label>
+            <select style="width: 100%" id="Province" class="form-control" asp-for="District.City.Province.Id">
+                <option value="" selected hidden>Select A Country...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>@L("City")</label>
+            <select style="width: 100%" id="City" class="form-control" asp-for="District.City.Id">
+                <option value="" selected hidden>Select A Province...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="DistrictId">@L("District")</label>
+            <select style="width: 100%" asp-for="DistrictId" id="District" class="form-control">
+                <option value="" selected hidden>Select A City...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Address">@L("Address")</label>
+            <input id="Address" type="text" name="Address" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Description">@L("Description")</label>
+            <input id="Description" type="text" name="Description" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Longitude">@L("Longitude")</label>
+            <input id="Longitude" type="text" name="Longitude" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Longitude">@L("Longitude")</label>
+            <input id="Longitude" type="text" name="Longitude" class="form-control" />
+        </div>
+    </form>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

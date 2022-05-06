@@ -1,5 +1,5 @@
 ﻿using Abp.AutoMapper;
-using DF.RealEstate.Entities.Addresses.Dto;
+using DF.RealEstate.Addresses.Countries.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
