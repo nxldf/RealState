@@ -124,6 +124,12 @@ namespace DF.RealEstate.Entities.Homes
 
             return result;
         }
+        public async Task EditCustomer(CustomersListDto input)
+        {
+            var data = await _customerRepository.GetAllIncluding(x => x.Tags).FirstOrDefaultAsync(x => x.Id == input.Id);
+            data.Tags.Clear();
+            ObjectMapper.Map(input, data);
+        }
     }
 
 }

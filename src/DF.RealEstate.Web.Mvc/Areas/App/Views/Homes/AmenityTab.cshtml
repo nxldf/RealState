@@ -7,7 +7,7 @@
 {
     <script src="/view-resources/Areas/App/Views/Homes/AmenityTab.js" asp-append-version="true"></script>
 }
-
+<input type="hidden" id="HomeId" name="HomeId" value="1" />
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
     <div class="@(await GetContainerClass())">
@@ -17,7 +17,7 @@
                     <h3>@L("Amenities")</h3>
                 </div>
                 <div class="card-toolbar">
-                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = 2, Title = "Amenity" })
+                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = 5, Title = "Amenity" })
                     @*@await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = (int)Model.Id.Value, Title = "Advertisement" })*@
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <form name="informationsForm">
-                    <input type="hidden" id="HomeId" name="HomeId" value="4" />
+
                     <div class="form-group">
                         <div class="col-form-label">
                             <div class="checkbox-inline" id="CheckBoxes">

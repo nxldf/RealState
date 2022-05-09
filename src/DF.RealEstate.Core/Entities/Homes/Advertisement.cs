@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DF.RealEstate.Entities.Homes
 {
-    public class Advertisement : FullAuditedEntity
+    public class Advertisement : FullAuditedEntity<long>
     {
         public DateTime? AvailableDate { get; set; }
         public AdvertisementType Type { get; set; }
@@ -17,5 +17,8 @@ namespace DF.RealEstate.Entities.Homes
         public bool ContactByPhone { get; set; }
         public bool ContactByEmail { get; set; }
         public bool ContactSiteMessage { get; set; }
+
+        public virtual Home Home { get; set; }
+        public long HomeId { get; set; }
     }
 }

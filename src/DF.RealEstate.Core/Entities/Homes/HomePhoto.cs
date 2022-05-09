@@ -13,6 +13,6 @@ namespace DF.RealEstate.Entities.Homes
         public string OrginalAddress { get; set; }
         public string ThumbnailAddress { get; set; }
         public virtual Home Home { get; set; }
-        public int HomeId { get; set; }
+        public long HomeId { get; set; }
     }
 }

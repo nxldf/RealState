@@ -10,7 +10,7 @@
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
-    <input type="hidden" id="HomeId" name="HomeId" value="4" />
+    <input type="hidden" id="HomeId" name="HomeId" value="1" />
     <div class="@(await GetContainerClass())">
         <div class="card card-custom gutter-b">
             <div class="card-header card-header-tabs-line">
@@ -18,7 +18,7 @@
                     <h3>@L("Advertisements")</h3>
                 </div>
                 <div class="card-toolbar">
-                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = 3, Title = "Advertisement" })
+                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = 1, Title = "Advertisement" })
                     @*@await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = (int)Model.Id.Value, Title = "Advertisement" })*@
                 </div>
             </div>

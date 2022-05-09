@@ -11,7 +11,7 @@ namespace DF.RealEstate.Entities.Homes
     {
         public virtual Home Home { get; set; }
         public virtual Amenity Amenity { get; set; }
-        public int HomeId { get; set; }
+        public long HomeId { get; set; }
         public int AmenityId { get; set; }
     }
 }

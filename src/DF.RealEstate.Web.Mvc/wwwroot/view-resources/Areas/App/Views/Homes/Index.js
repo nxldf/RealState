@@ -4,7 +4,7 @@
         var _modalManager;
         var _mService = abp.services.app.home;
         var _$InformationForm = null;
-
+        //$('.decimal-input-mask').inputmask('decimal', { min: 0 });
         this.init = function (modalManager) {
             _modalManager = modalManager;
 

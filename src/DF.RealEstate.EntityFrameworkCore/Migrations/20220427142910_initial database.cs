@@ -195,7 +195,7 @@ namespace DF.RealEstate.Migrations
                 name: "Advertisements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AvailableDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: false),
@@ -231,8 +231,7 @@ namespace DF.RealEstate.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HomeId1 = table.Column<long>(type: "bigint", nullable: true),
-                    HomeId = table.Column<int>(type: "int", nullable: false),
+                    HomeId = table.Column<long>(type: "bigint", nullable: false),
                     AmenityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -245,8 +244,8 @@ namespace DF.RealEstate.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HomeAmenities_Homes_HomeId1",
-                        column: x => x.HomeId1,
+                        name: "FK_HomeAmenities_Homes_HomeId",
+                        column: x => x.HomeId,
                         principalTable: "Homes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -261,8 +260,7 @@ namespace DF.RealEstate.Migrations
                     ContainerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrginalAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ThumbnailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HomeId1 = table.Column<long>(type: "bigint", nullable: true),
-                    HomeId = table.Column<int>(type: "int", nullable: false),
+                    HomeId = table.Column<long>(type: "bigint", nullable: false),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -275,8 +273,8 @@ namespace DF.RealEstate.Migrations
                 {
                     table.PrimaryKey("PK_HomePhotos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_HomePhotos_Homes_HomeId1",
-                        column: x => x.HomeId1,
+                        name: "FK_HomePhotos_Homes_HomeId",
+                        column: x => x.HomeId,
                         principalTable: "Homes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -308,14 +306,14 @@ namespace DF.RealEstate.Migrations
                 column: "AmenityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HomeAmenities_HomeId1",
+                name: "IX_HomeAmenities_HomeId",
                 table: "HomeAmenities",
-                column: "HomeId1");
+                column: "HomeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HomePhotos_HomeId1",
+                name: "IX_HomePhotos_HomeId",
                 table: "HomePhotos",
-                column: "HomeId1");
+                column: "HomeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Homes_DistrictId",
