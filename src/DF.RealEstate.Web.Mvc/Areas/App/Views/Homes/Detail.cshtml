@@ -21,9 +21,9 @@
 <input type="hidden" id="defualtDistrictId" value="@Model.DistrictId" />
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <abp-page-subheader title="">
+    @*<abp-page-subheader title="">
 
-    </abp-page-subheader>
+    </abp-page-subheader>*@
 
     <div class="@(await GetContainerClass())">
 
@@ -102,7 +102,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@L("Province")</label>
-                                                <select style="width: 100%" id="Province" class="form-control" >
+                                                <select style="width: 100%" id="Province" class="form-control">
                                                     <option value="" selected hidden>Select One Country...</option>
                                                 </select>
                                             </div>
@@ -110,7 +110,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@L("City")</label>
-                                                <select style="width: 100%" id="City" class="form-control" >
+                                                <select style="width: 100%" id="City" class="form-control">
                                                     <option value="" selected hidden>Select A Province...</option>
                                                 </select>
                                             </div>
@@ -161,6 +161,7 @@
                                                 <button type="button" id="saveInfoBtn" class="btn btn-danger ">@L("Save")</button>
                                             </div>
                                         </div>
+                                    </div>
                                 </form>
 
                             </div>

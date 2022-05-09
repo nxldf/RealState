@@ -25,14 +25,6 @@
         var defualtCityId = $('#defualtCityId').val();
         var defualtDistrictId = $('#defualtDistrictId').val();
 
-        console.log(defaultCountryId);
-        console.log(defaultProvinceId);
-        console.log(defualtCityId);
-        console.log(defualtDistrictId);
-        console.log("tetsttttttsttttsttsttststststst");
-
-
-        //var _$country = $('#Country');
         _countryDropDown.append($("<option selected hidden></option>").val('').html('Please Select Country'));
         $.ajax({
             url: abp.appPath + "api/services/app/country/GetCountryDropdown",
@@ -48,7 +40,6 @@
 
                 if (!isNaN(defaultCountryId)) {
                     $('#CountryDropdown').val(defaultCountryId).change();
-                    //defaultCountryId ="";
                 }
             },
             error: function () {
@@ -57,7 +48,6 @@
         });
 
         //province details by country id  
-        //_countryDropDown
         $("#CountryDropdown").change(function () {
             var _countryId = parseInt($(this).val());
 
@@ -173,19 +163,6 @@
 
     };
     
-    //if ($('#defaultCountryId').val() != null)
-        //if (!isNaN(test))
-        //    $('#CountryDropdown').val(test).change();
-
-    //$('#OpenBtn').click(function () {
-    //    console.log("AAAAAAAAAAAaa");
-    //    $('#CountryDropdown').trigger("change");
-    //    $('#Name').trigger("change");
-
-    //    $('#Name').val("ali").change();
-    //    $('#CountryDropdown').val(test).change();
-    //});
-
 
     $('#saveInfoBtn').click(function () {
         btnsave();

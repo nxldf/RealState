@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DF.RealEstate.Homes.Advertisements;
+using Abp.UI;
 
 namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
 {
@@ -21,10 +23,13 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
     public class HomesController : RealEstateControllerBase
     {
         private readonly IHomeAppService _homeAppService;
+        private readonly IAdvertisementAppService _advertisementAppService;
 
-        public HomesController(IHomeAppService homeAppService)
+        public HomesController(IHomeAppService homeAppService,
+            IAdvertisementAppService advertisementAppService)
         {
             _homeAppService = homeAppService;
+            _advertisementAppService = advertisementAppService;
         }
 
         public ActionResult Index()
@@ -39,28 +44,39 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
         }
         public async Task<ActionResult> Detail(long? id)
         {
-            //ViewBag.Country = new SelectList(await _addressAppService.GetCountryDropdown(), "Id", "Title");
-            //ViewBag.Province = new SelectList(await _addressAppService.GetProvinceDropdown(), "Id", "Title");
-            //ViewBag.City = new SelectList(await _addressAppService.GetCityDropdown(), "Id", "Title");
-            //ViewBag.District = new SelectList(await _addressAppService.GetDistrictDropdown(), "Id", "Title");
 
             var output = await _homeAppService.GetHomeForEdit(new NullableIdDto<long>() { Id = id });
             var model = ObjectMapper.Map<GetForEditHomeModel>(output);
             return View(model);
         }   
-        public async Task<ActionResult> AdvertisementTab(long? id)
+        public  ActionResult AdvertisementTab(long? id)
         {
             if (id.HasValue)
                 ViewBag.Id = id;
-            else
-                ViewBag.Id = 1;
-            var model = new GetForEditAdvertisementModel();
-            return View(model);
+            return View();
         }
 
-        public  PartialViewResult CreateHomeModal()
+        public ActionResult AmenityTab(long? id)
+        {
+            if (id.HasValue)
+                ViewBag.Id = id;
+            return View();
+        }
+
+
+        public PartialViewResult CreateHomeModal()
         {
             return PartialView("_CreateHomeModal");
+        }
+
+        public async Task<PartialViewResult> CreateOrEditAdvertisementModal(int? id ,long? homeId )
+        {
+            if (!id.HasValue && !homeId.HasValue)
+                throw new UserFriendlyException("Id And HomeId Are Null ");
+            ViewBag.HomeId = homeId;
+            var output = await _advertisementAppService.GetForEdit(new NullableIdDto() { Id = id });
+            var model = ObjectMapper.Map<GetForEditAdvertisementModel>(output);
+            return PartialView("_CreateOrEditAdvertisementModal",model);
         }
     }
 }

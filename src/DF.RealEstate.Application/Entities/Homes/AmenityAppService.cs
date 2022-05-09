@@ -13,16 +13,21 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 using DF.RealEstate.Homes.Amenities.Dto;
 using DF.RealEstate.Homes.Amenities;
+using System.Linq.Dynamic;
+using DF.RealEstate.Dto;
 
 namespace DF.RealEstate.Entities.Homes
 {
     public class AmenityAppService : RealEstateAppServiceBase, IAmenityAppService
     {
         private readonly IRepository<Amenity> _amenityRepository;
+        private readonly IRepository<HomeAmenity> _homeAmenityRepository;
 
-        public AmenityAppService(IRepository<Amenity> amenityRepository)
+        public AmenityAppService(IRepository<Amenity> amenityRepository,
+            IRepository<HomeAmenity> homeAmenityRepository)
         {
             _amenityRepository = amenityRepository;
+            _homeAmenityRepository = homeAmenityRepository;
         }
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
@@ -95,5 +100,30 @@ namespace DF.RealEstate.Entities.Homes
 
             return new GetForEditAmenityDto();
         }
+
+        [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
+        //[SwaggerHidden]
+        public async Task<List<IdTitleDto>> GetSelectedAmenities(long id)
+        {
+            var query = await _amenityRepository.GetAllIncluding(x => x.Translations, y => y.Homes).
+                DefaultIfEmpty().ToListAsync();
+
+            var a = query.Select(x => x.Homes.Select(y => y.HomeId == id).FirstOrDefault()).ToList();
+
+            var mappedData = ObjectMapper.Map<List<AmenityListDto>>(query);
+            var result = mappedData.Select(x => new IdTitleDto
+            {
+                Id = x.Id,
+                Title = x.Name
+            }).ToList();
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                result[i].selected = a[i] ;
+            }
+
+            return result;
+        }
     }
+
 }

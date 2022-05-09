@@ -25,6 +25,7 @@
   <ItemGroup>
     <PackageReference Include="Abp.EntityFrameworkCore.EFPlus" Version="6.5.0" />
     <PackageReference Include="NPOI" Version="2.5.4" />
+    <PackageReference Include="Slugify.Core" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,91 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Advertisements;
+@using DF.RealEstate.Web.Areas.App.Models.Common.Modals;
+@using DF.RealEstate.Entities;
+
+@model GetForEditAdvertisementModel
+
+
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.Id.HasValue ? (L("EditAdvertisement")) : L("AddNewAdvertisement")));
+
+<div class="modal-body">
+    <form name="ModalForm" role="form" novalidate class="form-validation">
+        @if (Model.Id.HasValue)
+        {
+            <input type="hidden" name="Id" value="@Model.Id.Value" />
+        }
+
+        <div class="form-group">
+            <label for="Type">@L("Type")</label>
+            <select id="Type" name="Type" class="form-control bs-select" asp-for="Type" title="Choose One Of The Following...">
+
+                @foreach (var type in Enum.GetValues<AdvertisementType>())
+                {
+                    <option value="@((int)type)">@type</option>
+                }
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="NetPrice">@L("NetPrice")</label>
+            <input id="NetPrice" type="text" name="NetPrice" class="form-control decimal-input-mask  text-left" value="@Model.NetPrice">
+        </div>
+
+        <div class="form-group">
+            <label for="AvailableDate">@L("AvailableDate")</label>
+            <input id="AvailableDate" type="text" name="AvailableDate" class="form-control date-picker" value="@Model.AvailableDate" />
+
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">@L("HideAddress")</label>
+            <div class="col-md-1">
+                <span class="switch switch-outline switch-icon switch-success">
+                    <label>
+                        <input type="checkbox" @Html.Raw(Model.HideAddress ? "checked=\" checked\"" : "") name="HideAddress">
+                        <span></span>
+                    </label>
+                </span>
+            </div>
+            <label class="col-md-3 col-form-label">@L("HidePreciseLocation")</label>
+            <div class="col-md-1">
+                <span class="switch switch-outline switch-icon switch-success">
+                    <label>
+                        <input type="checkbox" @Html.Raw(Model.HidePreciseLocation ? "checked=\" checked\"" : "") name="HidePreciseLocation">
+                        <span></span>
+                    </label>
+                </span>
+            </div>
+            <label class="col-md-3 col-form-label">@L("ContactByPhone")</label>
+            <div class="col-md-1">
+                <span class="switch switch-outline switch-icon switch-success">
+                    <label>
+                        <input type="checkbox" @Html.Raw(Model.ContactByPhone ? "checked=\" checked\"" : "") name="ContactByPhone">
+                        <span></span>
+                    </label>
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">@L("ContactByEmail")</label>
+            <div class="col-md-1">
+                <span class="switch switch-outline switch-icon switch-success">
+                    <label>
+                        <input type="checkbox" @Html.Raw(Model.ContactByEmail ? "checked=\" checked\"" : "") name="ContactByEmail">
+                        <span></span>
+                    </label>
+                </span>
+            </div>
+            <label class="col-md-3 col-form-label">@L("ContactSiteMessage")</label>
+            <div class="col-md-1">
+                <span class="switch switch-outline switch-icon switch-success">
+                    <label>
+                        <input type="checkbox" @Html.Raw(Model.ContactSiteMessage ? "checked=\" checked\"" : "") name="ContactSiteMessage">
+                        <span></span>
+                    </label>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

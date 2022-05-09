@@ -50,6 +50,7 @@ using DF.RealEstate.Addresses.Districts.Dto;
 using DF.RealEstate.Addresses.Provinces.Dto;
 using DF.RealEstate.Addresses.Cities.Dto;
 using DF.RealEstate.Addresses.Countries.Dto;
+using DF.RealEstate.Homes.Advertisements.Dto;
 
 namespace DF.RealEstate
 {
@@ -201,6 +202,11 @@ namespace DF.RealEstate
             configuration.CreateMap<Home, HomeListDto>();
             configuration.CreateMap<Home, GetForEditHomeDto>().ReverseMap();
             configuration.CreateMap<CreateOrUpdateHomeDto, Home>();
+
+            //Advertisement
+            configuration.CreateMap<Advertisement, AdvertisementListDto>();
+            configuration.CreateMap<Advertisement, GetForEditAdvertisementDto>();
+            configuration.CreateMap<CreateOrEditAdvertisementDto, Advertisement>();
         }
     }
 }
