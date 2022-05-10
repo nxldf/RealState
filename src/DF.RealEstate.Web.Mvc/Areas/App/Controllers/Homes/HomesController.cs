@@ -52,14 +52,14 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
         public  ActionResult AdvertisementTab(long? id)
         {
             if (id.HasValue)
-                ViewBag.Id = id;
+                ViewBag.HomeId = id;
             return View();
         }
 
         public ActionResult AmenityTab(long? id)
         {
             if (id.HasValue)
-                ViewBag.Id = id;
+                ViewBag.HomeId = id;
             return View();
         }
 

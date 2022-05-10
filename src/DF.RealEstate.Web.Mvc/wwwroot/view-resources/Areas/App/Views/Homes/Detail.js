@@ -169,14 +169,11 @@
     });
 
     var btnsave = function () {
-        abp.ui.setBusy();
         if (!_$InformationForm.valid()) {
-            abp.ui.clearBusy();
             return;
         }
-
+        abp.ui.setBusy();
         var info = _$InformationForm.serializeJSON({ useIntKeysAsArrayIndex: true });
-        console.log(info);
         _mService.createOrEditHome(info).done(function () {
             abp.notify.info(app.localize('SavedSuccessfully'));
             location.reload();

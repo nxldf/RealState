@@ -138,10 +138,10 @@
 
         };
 
-        this.save = function () {
-            _modalManager.setBusy(true);
+        this.save = function () {           
             if (!_$InformationForm.valid())
                 return;
+            _modalManager.setBusy(true);
             var info = _$InformationForm.serializeJSON({ useIntKeysAsArrayIndex: true });
             console.log(info);
             _mService.createOrEditHome(info).done(function () {

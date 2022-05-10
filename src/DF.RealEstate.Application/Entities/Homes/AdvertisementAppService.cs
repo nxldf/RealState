@@ -18,9 +18,9 @@ namespace DF.RealEstate.Entities.Homes
 {
     public class AdvertisementAppService : RealEstateAppServiceBase , IAdvertisementAppService
     {
-        private readonly IRepository<Advertisement> _advertisementRepository;
+        private readonly IRepository<Advertisement,long> _advertisementRepository;
 
-        public AdvertisementAppService(IRepository<Advertisement> advertisementRepository)
+        public AdvertisementAppService(IRepository<Advertisement,long> advertisementRepository)
         {
             _advertisementRepository = advertisementRepository;
         }

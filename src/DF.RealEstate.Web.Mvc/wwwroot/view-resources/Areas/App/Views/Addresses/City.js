@@ -13,12 +13,12 @@
         };
 
         this.save = function () {
-            _modalManager.setBusy(true);
             if (!_$InformationForm.valid())
                 return;
+            _modalManager.setBusy(true);
             var info = _$InformationForm.serializeJSON({ useIntKeysAsArrayIndex: true });
             console.log(info);
-            _mService.createOrEditCity(info).done(function () {
+            _mService.createOrEdit(info).done(function () {
                 abp.notify.info(app.localize('SavedSuccessfully'));
                 _modalManager.close();
                 abp.event.trigger('app.createOrEditCityModal');
@@ -118,10 +118,6 @@
             {
                 targets: 2,
                 data: 'name',
-            },
-            {
-                targets: 3,
-                data: 'slug',
             },
             ],
             "drawCallback": function (settings) { }

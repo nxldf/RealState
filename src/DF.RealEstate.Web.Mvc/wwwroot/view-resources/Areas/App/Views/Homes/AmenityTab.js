@@ -18,10 +18,20 @@
     });
 
     $('#saveInfoBtn').click(function () {
-        //btnsave();
+        btnsave();               
+    });
 
+
+    var btnsave = function () {
         _$InformationForm = $('form[name=informationsForm]');
         _$InformationForm.validate({ ignore: "" });
+
+        if (!_$InformationForm.valid()) {
+            return;
+        }
+        abp.ui.setBusy();
+
+
         var info = _$InformationForm.serializeJSON({ useIntKeysAsArrayIndex: true });
         _homeId = $("#HomeId").val();
         var input = [];
@@ -29,9 +39,14 @@
             input.push(info[item]);
         }
         info.Amenities = input;
-        info.HomeId = _homeId;
+        info.Id = _homeId;
+        _mService.addOrEditAmenities(info).done(function () {
+            abp.notify.info(app.localize('SavedSuccessfully'));
+            location.reload();
+        }).always(function () {
+            abp.ui.clearBusy();
+        });
 
-        console.log(info);
-    });
+    };
 
 })();

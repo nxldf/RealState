@@ -21,9 +21,9 @@
             format: 'L'
         });
         this.save = function () {
-            _modalManager.setBusy(true);
             if (!_$InformationForm.valid())
                 return;
+            _modalManager.setBusy(true);
             var info = _$InformationForm.serializeJSON({ useIntKeysAsArrayIndex: true });
 
             if (info.ContactByEmail === "on")

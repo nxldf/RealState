@@ -13,6 +13,7 @@ using Abp.Linq.Extensions;
 using Abp.Authorization;
 using DF.RealEstate.Authorization;
 using DF.RealEstate.Dto;
+using Slugify;
 
 namespace DF.RealEstate.Entities.Addresses
 {
@@ -85,6 +86,49 @@ namespace DF.RealEstate.Entities.Addresses
                 Id = x.Id,
                 Title = x.Name,
             }).ToList();
+        }
+
+        [AbpAuthorize(AppPermissions.Pages_Administration_Addresses_CreateOrEdit)]
+        [SwaggerHidden]
+        public async Task CreateOrEdit(CreateOrUpdateCityDto input)
+        {
+            if (!input.Id.HasValue)
+            {
+                 await CreateAsync(input);
+            }
+            else
+            {
+                 await UpdateAsync(input);
+            }
+
+        }
+        private async Task CreateAsync(CreateOrUpdateCityDto input)
+        {
+
+
+            var obj = ObjectMapper.Map<City>(input);
+            await _cityRepository.InsertAndGetIdAsync(obj);
+
+            //slug
+            SlugHelper helper = new SlugHelper();
+            var slug = helper.GenerateSlug(input.Name).Replace(".", "");
+            var possibleDuplicate = _cityRepository.GetAll().Where(x => x.Id != obj.Id).FirstOrDefault(a => a.Slug == slug);
+            obj.Slug = possibleDuplicate == null ? slug : helper.GenerateSlug(input.Name + " " + obj.Id);
+            //endslug
+        }
+        private async Task UpdateAsync(CreateOrUpdateCityDto input)
+        {
+            var res = await _cityRepository.GetAllIncluding(x => x.Districts).FirstOrDefaultAsync(x => x.Id == input.Id);
+
+            //slug
+            SlugHelper helper = new SlugHelper();
+            var slug = helper.GenerateSlug(input.Name).Replace(".", "");
+            var possibleDuplicate = _cityRepository.GetAll().Where(x => x.Id != res.Id).FirstOrDefault(a => a.Slug == slug);
+            input.Slug = possibleDuplicate == null ? slug : helper.GenerateSlug(input.Name + " " + res.Id);
+            //endslug
+            res.Districts.Clear();
+            ObjectMapper.Map(input, res);
+
         }
     }
 }

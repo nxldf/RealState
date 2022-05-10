@@ -21,13 +21,13 @@ namespace DF.RealEstate.Entities.Homes
     public class AmenityAppService : RealEstateAppServiceBase, IAmenityAppService
     {
         private readonly IRepository<Amenity> _amenityRepository;
-        private readonly IRepository<HomeAmenity> _homeAmenityRepository;
+        private readonly IRepository<Home, long> _homeRepository;
 
         public AmenityAppService(IRepository<Amenity> amenityRepository,
-            IRepository<HomeAmenity> homeAmenityRepository)
+            IRepository<Home, long> homeRepository)
         {
             _amenityRepository = amenityRepository;
-            _homeAmenityRepository = homeAmenityRepository;
+            _homeRepository = homeRepository;
         }
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
@@ -102,7 +102,7 @@ namespace DF.RealEstate.Entities.Homes
         }
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
-        //[SwaggerHidden]
+        [SwaggerHidden]
         public async Task<List<IdTitleDto>> GetSelectedAmenities(long id)
         {
             var query = await _amenityRepository.GetAllIncluding(x => x.Translations, y => y.Homes).
@@ -119,15 +119,19 @@ namespace DF.RealEstate.Entities.Homes
 
             for (int i = 0; i < result.Count; i++)
             {
-                result[i].selected = a[i] ;
+                result[i].selected = a[i];
             }
 
             return result;
         }
-        public async Task EditCustomer(CustomersListDto input)
+
+        [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
+        [SwaggerHidden]
+        public async Task AddOrEditAmenities(AddOrEditAmenitiesDto input)
         {
-            var data = await _customerRepository.GetAllIncluding(x => x.Tags).FirstOrDefaultAsync(x => x.Id == input.Id);
-            data.Tags.Clear();
+            var data = await _homeRepository.GetAllIncluding(x => x.Amenities).FirstOrDefaultAsync(x => x.Id == input.Id);
+            if(data.Amenities != null)
+            data.Amenities.Clear();
             ObjectMapper.Map(input, data);
         }
     }

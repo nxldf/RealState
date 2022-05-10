@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DF.RealEstate.Homes.Advertisements.Dto
 {
-    public class GetForEditAdvertisementDto : NullableIdDto
+    public class GetForEditAdvertisementDto : NullableIdDto<long>
     {
         public DateTime? AvailableDate { get; set; }
         public AdvertisementType Type { get; set; }
@@ -16,5 +16,6 @@ namespace DF.RealEstate.Homes.Advertisements.Dto
         public bool ContactByPhone { get; set; }
         public bool ContactByEmail { get; set; }
         public bool ContactSiteMessage { get; set; }
+        public long HomeId { get; set; }
     }
 }
