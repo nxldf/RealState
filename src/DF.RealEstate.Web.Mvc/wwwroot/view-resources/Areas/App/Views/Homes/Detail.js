@@ -176,7 +176,6 @@
         var info = _$InformationForm.serializeJSON({ useIntKeysAsArrayIndex: true });
         _mService.createOrEditHome(info).done(function () {
             abp.notify.info(app.localize('SavedSuccessfully'));
-            location.reload();
         }).always(function () {
             abp.ui.clearBusy();
         });

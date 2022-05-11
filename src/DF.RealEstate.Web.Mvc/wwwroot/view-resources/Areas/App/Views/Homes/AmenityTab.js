@@ -41,8 +41,7 @@
         info.Amenities = input;
         info.Id = _homeId;
         _mService.addOrEditAmenities(info).done(function () {
-            abp.notify.info(app.localize('SavedSuccessfully'));
-            location.reload();
+            abp.notify.info(app.localize('SavedSuccessfully'));            
         }).always(function () {
             abp.ui.clearBusy();
         });

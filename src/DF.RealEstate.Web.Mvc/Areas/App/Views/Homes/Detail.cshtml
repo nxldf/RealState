@@ -94,7 +94,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="CountryId">@L("Country")</label>
-                                                <select style="width: 100%" class="form-control" id="CountryDropdown">
+                                                <select style="width: 100%" class="form-control" id="CountryDropdown" required>
                                                     <option value="" selected hidden>Select...</option>
                                                 </select>
                                             </div>
@@ -102,7 +102,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@L("Province")</label>
-                                                <select style="width: 100%" id="Province" class="form-control">
+                                                <select style="width: 100%" id="Province" class="form-control" required>
                                                     <option value="" selected hidden>Select One Country...</option>
                                                 </select>
                                             </div>
@@ -110,7 +110,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@L("City")</label>
-                                                <select style="width: 100%" id="City" class="form-control">
+                                                <select style="width: 100%" id="City" class="form-control" required>
                                                     <option value="" selected hidden>Select A Province...</option>
                                                 </select>
                                             </div>
@@ -118,7 +118,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="DistrictId">@L("District")</label>
-                                                <select style="width: 100%" id="District" class="form-control" name="DistrictId">
+                                                <select style="width: 100%" id="District" class="form-control" name="DistrictId" required>
                                                     <option value="" selected hidden>Select A City...</option>
                                                 </select>
                                             </div>
