@@ -15,6 +15,7 @@ using DF.RealEstate.Homes.Amenities.Dto;
 using DF.RealEstate.Homes.Amenities;
 using System.Linq.Dynamic;
 using DF.RealEstate.Dto;
+using DF.RealEstate.GeHomesInformations;
 
 namespace DF.RealEstate.Entities.Homes
 {
@@ -133,6 +134,77 @@ namespace DF.RealEstate.Entities.Homes
             if(data.Amenities != null)
             data.Amenities.Clear();
             ObjectMapper.Map(input, data);
+        } 
+        
+        [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
+        [SwaggerHidden]
+        public async Task<AddOrEditAmenitiesDto> AddAmenitiesFromUrl(HomeInformation HomeInfo)
+        {
+            List<int> amenityId = new List<int>();
+            var amenities = await _amenityRepository.GetAllIncluding(x => x.Translations).ToListAsync();
+            foreach (var item in amenities)
+            {
+                foreach (var subitem in item.Translations)
+                {
+                    switch (subitem.Name)
+                    {
+                        case var value when value.Contains(HomeInfo.BasementCellar):
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.AirConditioning:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Loggia:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Elevator:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.StorageRoom:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Garage:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Balcony:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.ParkingSpot:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Pool:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Furnished:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.PartlyFurnished:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.BarrierFree:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Carport:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Garden:
+                            amenityId.Add(item.Id);
+                            break;
+                        case var value when value == HomeInfo.Terrace:
+                            amenityId.Add(item.Id);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            if (amenityId != null)
+            {
+                AddOrEditAmenitiesDto addAmenity = new AddOrEditAmenitiesDto();
+                addAmenity.Amenities = amenityId.ToArray();
+                return addAmenity;
+            }
+            return new AddOrEditAmenitiesDto();
         }
     }
 

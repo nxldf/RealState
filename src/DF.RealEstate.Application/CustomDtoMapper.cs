@@ -52,6 +52,7 @@ using DF.RealEstate.Addresses.Cities.Dto;
 using DF.RealEstate.Addresses.Countries.Dto;
 using DF.RealEstate.Homes.Advertisements.Dto;
 using System.Linq;
+using DF.RealEstate.GeHomesInformations;
 
 namespace DF.RealEstate
 {
@@ -203,6 +204,7 @@ namespace DF.RealEstate
             configuration.CreateMap<Home, HomeListDto>();
             configuration.CreateMap<Home, GetForEditHomeDto>().ReverseMap();
             configuration.CreateMap<CreateOrUpdateHomeDto, Home>();
+            configuration.CreateMap<HomeInformation, Home>();
             //configuration.CreateMap<Home, AddOrEditAmenitiesDto>();
             configuration.CreateMap<Home, AddOrEditAmenitiesDto>()
                  .ForMember(x => x.Amenities, options => options.MapFrom(x => x.Amenities.Select(x => x.AmenityId)));
@@ -213,6 +215,8 @@ namespace DF.RealEstate
             configuration.CreateMap<Advertisement, AdvertisementListDto>();
             configuration.CreateMap<Advertisement, GetForEditAdvertisementDto>();
             configuration.CreateMap<CreateOrEditAdvertisementDto, Advertisement>();
+            configuration.CreateMap<HomeInformation, Advertisement>()
+                .ForMember(x=>x.Id , options=> options.Ignore());
         }
     }
 }
