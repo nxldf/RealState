@@ -63,7 +63,7 @@ namespace DF.RealEstate.Entities.Homes
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Homes_Delete)]
         //[SwaggerHidden]
-        public Task DeleteCountry(EntityDto<long> input)
+        public Task Delete(EntityDto<long> input)
         {
             return _homeRepository.DeleteAsync(input.Id);
         }
@@ -97,16 +97,17 @@ namespace DF.RealEstate.Entities.Homes
         //[SwaggerHidden]
         public async Task<HomeInformation> CreateHomeFromUrl(string Url)
         {
-            Url = "https://www.willhaben.at/iad/immobilien/d/mietwohnungen/steiermark/murtal/wohnung-fohnsdorf-553183281";
+            //Url = "https://www.willhaben.at/iad/immobilien/d/mietwohnungen/steiermark/murtal/wohnung-fohnsdorf-553183281";
             //Url = "https://www.willhaben.at/iad/immobilien/d/mietwohnungen/wien/wien-1220-donaustadt/wohnstandard-auf-hoechster-ebene-562011355";
             HomeInformation HomeInfo = await _geHomesInformation.HomeInformations(Url);
 
             var district = _districtRepository.GetAll().Where(x => x.Name.Contains(HomeInfo.DistrictName)).FirstOrDefault();
             if (district != null)
                 HomeInfo.DistrictId = district.Id;
-            else            
-                throw new UserFriendlyException("District Name Dose not Exsist!");
-           
+            else
+                HomeInfo.DistrictId = 3;
+            //throw new UserFriendlyException("District Name Dose not Exsist!");
+
             AddOrEditAmenitiesDto addAmenity = new AddOrEditAmenitiesDto();
             addAmenity = await _amenityAppService.AddAmenitiesFromUrl(HomeInfo);
             HomeInfo.HomeId = await _homeRepository.InsertAndGetIdAsync(ObjectMapper.Map<Home>(SetHomeInfoFromUrl(HomeInfo)));

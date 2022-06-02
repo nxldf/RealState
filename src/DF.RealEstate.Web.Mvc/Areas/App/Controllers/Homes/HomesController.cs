@@ -46,6 +46,7 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
 
             return View(model);
         }
+
         public async Task<ActionResult> Detail(long? id)
         {
 
@@ -53,6 +54,7 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
             var model = ObjectMapper.Map<GetForEditHomeModel>(output);
             return View(model);
         }   
+
         public  ActionResult AdvertisementTab(long? id)
         {
             if (id.HasValue)
@@ -74,18 +76,23 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
             return View();
         }
 
-
         public PartialViewResult CreateHomeModal()
         {
             return PartialView("_CreateHomeModal");
-        }     
-        
+        }
+
+        public PartialViewResult AddFromWillhabenModal()
+        {
+            return PartialView("_AddFromWillhabenModal");
+        }
+
         public PartialViewResult CreateOrEditOnMap(decimal latitude, decimal longitude )
         {
             ViewBag.Latitude = latitude;
             ViewBag.Longitude = longitude;
             return PartialView("_CreateOrEditOnMap");
         } 
+
         public async  Task<PartialViewResult> CreateOrEditPhotoModal(int? Id, long? homeId)
         {
 

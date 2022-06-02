@@ -10,7 +10,7 @@ namespace DF.RealEstate.Homes
     public interface IHomeAppService
     {
         Task<PagedResultDto<HomeListDto>> GetAll(GetAllHomeInput input);
-        Task DeleteCountry(EntityDto<long> input);
+        Task Delete(EntityDto<long> input);
         Task<GetForEditHomeDto> GetHomeForEdit(NullableIdDto<long> input);
         Task CreateOrEditHome(CreateOrUpdateHomeDto input);
     }

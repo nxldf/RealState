@@ -156,6 +156,43 @@
 })();
 
 
+(function ($) {
+    app.modals.AddFromWillhabenModal = function () {
+
+        var _modalManager;
+        var _mService = abp.services.app.home;
+        var _$InformationForm = null;
+
+        this.init = function (modalManager) {
+            _modalManager = modalManager;
+
+            _$InformationForm = _modalManager.getModal().find('form[name=ModalForm]');
+            _$InformationForm.validate({ ignore: "" });
+        };
+
+        this.save = function () {
+            if (!_$InformationForm.valid())
+                return;
+
+            var info = _$InformationForm.serializeJSON({ useIntKeysAsArrayIndex: true });
+            if (info.Url.includes("www.willhaben.at")) {
+                _modalManager.setBusy(true);
+                console.log(info.Url);
+                _mService.createHomeFromUrl(info.Url).done(function () {
+                    abp.notify.info(app.localize('SavedSuccessfully'));
+                    _modalManager.close();
+                    abp.event.trigger('app.createHomeModal');
+                }).always(function () {
+                    _modalManager.setBusy(false);
+                });
+            }
+            else
+                alert("Url Address is Not Valid!!");
+        };
+    };
+})();
+
+
 
 
 (function () {
@@ -175,6 +212,10 @@
             modalClass: 'CreateHomeModal',
         });
 
+        var _addFromWillhubenModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/Homes/AddFromWillhabenModal',
+            modalClass: 'AddFromWillhabenModal',
+        });
 
         var dataTable = _$dTable.DataTable({
             paging: true,
@@ -318,6 +359,10 @@
 
         $('#CreateNewBtn').click(function () {
             _createOrEditModal.open();
+        });
+
+        $('#AddFromWillhaben').click(function () {
+            _addFromWillhubenModal.open();
         });
 
         $('#GetButton').click(function (e) {
