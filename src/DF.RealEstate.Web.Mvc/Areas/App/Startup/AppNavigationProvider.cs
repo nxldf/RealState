@@ -135,22 +135,6 @@ namespace DF.RealEstate.Web.Areas.App.Startup
                             icon: "flaticon-medical",
                             permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_UiCustomization)
                         )
-                    ).AddItem(new MenuItemDefinition(
-                            AppPageNames.Common.WebhookSubscriptions,
-                            L("WebhookSubscriptions"),
-                            url: "App/WebhookSubscription",
-                            icon: "flaticon2-world",
-                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_WebhookSubscription)
-                        )
-                    )
-                    .AddItem(new MenuItemDefinition(
-                            AppPageNames.Common.DynamicProperties,
-                            L("DynamicProperties"),
-                            url: "App/DynamicProperty",
-                            icon: "flaticon-interface-8",
-                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_DynamicProperties)
-                        )
-                    )
                     .AddItem(new MenuItemDefinition(
                             AppPageNames.Host.Settings,
                             L("Settings"),
@@ -159,20 +143,13 @@ namespace DF.RealEstate.Web.Areas.App.Startup
                             permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Settings)
                         )
                     )
-                    .AddItem(new MenuItemDefinition(
+                    ).AddItem(new MenuItemDefinition(
                             AppPageNames.Tenant.Settings,
                             L("Settings"),
                             url: "App/Settings",
                             icon: "flaticon-settings",
                             permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Tenant_Settings)
                         )
-                    )
-                ).AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.DemoUiComponents,
-                        L("DemoUiComponents"),
-                        url: "App/DemoUiComponents",
-                        icon: "flaticon-shapes",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_DemoUiComponents)
                     )
                 )
                 .AddItem(address)

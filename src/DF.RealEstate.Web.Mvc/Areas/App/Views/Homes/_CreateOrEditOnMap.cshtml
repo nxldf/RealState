@@ -1,0 +1,31 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Common.Modals;
+
+
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(@L("SelectLocation")))
+
+
+
+<div id="modal-body" class="modal-body">
+    <input name="defLatitude" id="defLatitude" type="hidden" value="@ViewBag.Latitude" />
+    <input name="defLongitude" id="defLongitude" type="hidden" value="@ViewBag.Longitude" />
+    <form name="ModalForm">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>        
+        <link href="~/view-resources/Areas/App/Views/Homes/Detail.css" rel="stylesheet" />
+
+
+        <h3>My Google Maps Demo</h3>
+        <div id="map"></div>
+
+        @*https://www.npmjs.com/package/googlemaps/js-api-loader.*@
+        <script src="~/view-resources/Areas/App/Views/Homes/Detail.js"></script>
+        @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAAwJcdgequiHsSIXPFoSHoQRg4vHsqSc&callback=initMap" async defer></script>*@
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyAAAwJcdgequiHsSIXPFoSHoQRg4vHsqSc&callback=initMap">
+        </script>
+    </form>
+</div>
+
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+
+

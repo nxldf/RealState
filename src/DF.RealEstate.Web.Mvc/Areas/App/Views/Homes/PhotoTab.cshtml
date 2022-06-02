@@ -1,0 +1,47 @@
+﻿@section Styles
+{
+
+}
+
+@section Scripts
+{
+    <script src="/view-resources/Areas/App/Views/Homes/PhotoTab.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <abp-page-subheader title="@L("Photos")"
+                        description="Id:@ViewBag.HomeId | @ViewBag.Title">
+        <button id="CreateNewButton" class="btn btn-primary">
+            @L("Create")
+        </button>
+    </abp-page-subheader>
+
+    <input name="HomeId" id="HomeId" type="hidden" value="@ViewBag.HomeId" />
+
+    <div class="@(await GetContainerClass())">
+
+        <div class="card card-custom">
+            <div class="card-header card-header-tabs-line">
+                <div class="card-title">
+                    <h3 class="card-label">Detail</h3>
+                </div>
+                <div class="card-toolbar">
+                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = ViewBag.HomeId, Title = "Photos" })
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="align-items-center">
+                    <table id="DataTable" class="table table-separate table-head-custom dataTable no-footer dtr-inline dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>@L("Action")</th>
+                                <th>@L("Image")</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,9 @@
 ﻿using Abp.Domain.Entities.Auditing;
+using Castle.MicroKernel.SubSystems.Conversion;
 using DF.RealEstate.Entities.Addresses;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +22,10 @@ namespace DF.RealEstate.Entities.Homes
         public int DistrictId { get; set; }
 
         public long Space { get; set; }
-        public long Latitude { get; set; }
-        public long Longitude { get; set; }
+        [Column(TypeName = "decimal(9, 6)")]
+        public decimal Latitude { get; set; }
+        [Column(TypeName = "decimal(9, 6)")]
+        public decimal Longitude { get; set; }
         public int Bedrooms { get; set; }
         public int Bathrooms { get; set; }
 

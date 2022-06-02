@@ -14,7 +14,7 @@
         {
             <input type="hidden" name="Id" value="@Model.Id.Value" />
         }
-
+        <input type="hidden" id="HomeId" name="HomeId" value="@ViewBag.HomeId" />
         <div class="form-group">
             <label for="Type">@L("Type")</label>
             <select id="Type" name="Type" class="form-control bs-select" asp-for="Type" title="Choose One Of The Following...">

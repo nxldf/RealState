@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DF.RealEstate.Homes.Advertisements;
 using Abp.UI;
+using DF.RealEstate.Homes.HomePhotos;
 
 namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
 {
@@ -24,12 +25,15 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
     {
         private readonly IHomeAppService _homeAppService;
         private readonly IAdvertisementAppService _advertisementAppService;
+        private readonly IHomePhotoAppService _homePhotoAppService;
 
         public HomesController(IHomeAppService homeAppService,
-            IAdvertisementAppService advertisementAppService)
+            IAdvertisementAppService advertisementAppService,
+            IHomePhotoAppService homePhotoAppService)
         {
             _homeAppService = homeAppService;
             _advertisementAppService = advertisementAppService;
+            _homePhotoAppService = homePhotoAppService;
         }
 
         public ActionResult Index()
@@ -61,12 +65,40 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
             if (id.HasValue)
                 ViewBag.HomeId = id;
             return View();
+        }   
+        
+        public ActionResult PhotoTab(long? id)
+        {
+            if (id.HasValue)
+                ViewBag.HomeId = id;
+            return View();
         }
 
 
         public PartialViewResult CreateHomeModal()
         {
             return PartialView("_CreateHomeModal");
+        }     
+        
+        public PartialViewResult CreateOrEditOnMap(decimal latitude, decimal longitude )
+        {
+            ViewBag.Latitude = latitude;
+            ViewBag.Longitude = longitude;
+            return PartialView("_CreateOrEditOnMap");
+        } 
+        public async  Task<PartialViewResult> CreateOrEditPhotoModal(int? Id, long? homeId)
+        {
+
+            if (!Id.HasValue && !homeId.HasValue)
+                throw new UserFriendlyException("Id and HomeId are null");
+
+            var output = await _homePhotoAppService.GetForEdit(new NullableIdDto<int>() { Id = Id });
+            var model = output;
+
+            if (!Id.HasValue)
+                model.HomeId = homeId.Value;
+
+            return PartialView("_CreateOrEditPhotoModal", model);
         }
 
         public async Task<PartialViewResult> CreateOrEditAdvertisementModal(int? id ,long? homeId )

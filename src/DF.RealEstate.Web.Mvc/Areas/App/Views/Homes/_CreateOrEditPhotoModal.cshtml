@@ -1,0 +1,53 @@
+﻿
+@using DF.RealEstate.Web.Areas.App.Models.Common.Modals;
+@using DF.RealEstate.Homes.HomePhotos.Dto;
+
+@model HomePhotoDto
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.Id.HasValue ? (L("Edit")) : L("CreateNew")));
+@*@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", L("Create"));*@
+
+
+@{
+    var ImageFullAddress = DF.RealEstate.AppConsts.AzureImagePath + Model.OrginalAddress;
+}
+
+<div class="modal-body">
+    <form name="ModalForm" role="form" novalidate class="form-validation">
+        @if (Model.Id.HasValue)
+        {
+            <input type="hidden" name="Id" value="@Model.Id" />
+        }
+
+        @*<input type="hidden" asp-for="@Model.HomeId" />*@
+        <input type="hidden" id="HomeId" name="HomeId" value="@Model.HomeId" />
+        <input type="hidden" id="OrginalAddress" name="OrginalAddress" value="@Model.OrginalAddress" />
+        <input type="hidden" id="ThumbnailAddress" name="ThumbnailAddress" value="@Model.ThumbnailAddress" />
+        <div class="row">
+            <div class="col-md-4">
+                <label>@L("Image")</label>
+                <div class="form-group">
+                    <div class="image-input image-input-outline" id="kt_image_partner">
+                        <div class="image-input-wrapper"
+                             style="width: 225px; height: 150px; background-image:@Html.Raw(!string.IsNullOrEmpty(Model.OrginalAddress) ? $"url({ImageFullAddress})" : "none;")">
+                        </div>
+                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                               data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                            <i class="fa fa-pen icon-sm text-muted"></i>
+                            <input id="image-input-partner" type="file" accept=".png, .jpg, .jpeg" />
+                            <input id="image-remove-partner" type="hidden" />
+                        </label>
+                        <span id="cancelImageBtnPartner" class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                              data-action="cancel" data-toggle="tooltip" title="Cancel">
+                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

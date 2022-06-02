@@ -50,5 +50,10 @@ namespace DF.RealEstate
         public static TimeSpan RefreshTokenExpiration = TimeSpan.FromDays(365);
 
         public const string DateTimeOffsetFormat = "yyyy-MM-ddTHH:mm:sszzz";
+
+
+        public const string AzureImagePath = "https://gifthopeblob.blob.core.windows.net/images/";
+        public const string AzureBlobConnectionString = "DefaultEndpointsProtocol=https;AccountName=gifthopeblob;AccountKey=1TRcGEBiylP/3cM/4fIkRBm874Jrfnn/nLMPQ2NlzrP5QL55DNh2ClVGtjhdwBfYwUDdtiulV1+KTPWMTsOVbw==;EndpointSuffix=core.windows.net";
+
     }
 }
