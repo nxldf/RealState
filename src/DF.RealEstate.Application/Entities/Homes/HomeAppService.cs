@@ -98,7 +98,7 @@ namespace DF.RealEstate.Entities.Homes
         public async Task<HomeInformation> CreateHomeFromUrl(string Url)
         {
             //Url = "https://www.willhaben.at/iad/immobilien/d/mietwohnungen/steiermark/murtal/wohnung-fohnsdorf-553183281";
-            //Url = "https://www.willhaben.at/iad/immobilien/d/mietwohnungen/wien/wien-1220-donaustadt/wohnstandard-auf-hoechster-ebene-562011355";
+            
             HomeInformation HomeInfo = await _geHomesInformation.HomeInformations(Url);
 
             var district = _districtRepository.GetAll().Where(x => x.Name.Contains(HomeInfo.DistrictName)).FirstOrDefault();

@@ -18,7 +18,7 @@ namespace DF.RealEstate.Migrations.Seed.Host
             return new List<ApplicationLanguage>
             {
                 new ApplicationLanguage(tenantId, "en", "English", "famfamfam-flags us"),
-                new ApplicationLanguage(tenantId, "de", "Deutsch", "famfamfam-flags de"),
+                new ApplicationLanguage(tenantId, "de", "Deutsch", "famfamfam-flags de")
             };
         }
 
