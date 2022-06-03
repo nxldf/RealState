@@ -13,38 +13,38 @@ namespace DF.RealEstate.Web.Areas.App.Startup
         {
             var menu = context.Manager.Menus[MenuName] = new MenuDefinition(MenuName, new FixedLocalizableString("Main Menu"));
 
-            var address = new MenuItemDefinition(
+            var address = new MenuItemDefinition(                            
                         AppPageNames.Common.Administration,
-                        L("Addresses"),
-                        icon: "flaticon-interface-8"
-                  ).AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.Administration,
-                        L("Address"),
+                        L("Locations"),
                         url: "App/Addresses",
-                        icon: "flaticon-shapes",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Addresses)
-                     )
+                        icon: "flaticon-pin",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Addresses)                     
                   );
 
-            var homes = new MenuItemDefinition(
-                    AppPageNames.Common.Administration,
-                    L("HomesMenu"),
-                    icon: "flaticon-interface-8"
-                 ).AddItem(new MenuItemDefinition(
+            var amenities = new MenuItemDefinition(
                     AppPageNames.Common.Administration,
                     L("Amenities"),
                     url: "App/Amenities",
-                    icon: "flaticon-shapes",
+                    icon: "flaticon2-indent-dots",
                     permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Amenities)
-                    )
-                ).AddItem(new MenuItemDefinition(
+
+                    );
+            var homes = new MenuItemDefinition(
                         AppPageNames.Common.Administration,
                         L("Homes"),
                         url: "App/Homes",
-                        icon: "flaticon-map",
+                        icon: "flaticon-home-1",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Homes)
-                    )
+                    
                  );
+            var advertisment = new MenuItemDefinition(
+                        AppPageNames.Common.Administration,
+                        L("Advertisements"),
+                        url: "App/Advertisements",
+                        icon: "flaticon2-speaker",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Homes)
+
+                  );
 
             menu
                 .AddItem(new MenuItemDefinition(
@@ -152,8 +152,10 @@ namespace DF.RealEstate.Web.Areas.App.Startup
                         )
                     )
                 )
+                .AddItem(homes)
                 .AddItem(address)
-                .AddItem(homes);
+                .AddItem(amenities)                
+                .AddItem(advertisment);
 
 
 

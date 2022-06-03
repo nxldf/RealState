@@ -1158,6 +1158,27 @@
 		<text name="Description">Description</text>
 		<text name="CreateNew">Create New</text>
 		<text name="Addresses">Addresses</text>
+		<text name="Locations">Locations</text>
 		<text name="HomesMenu">Homes Menu</text>
+		<text name="Homes">Homes</text>
+		<text name="Advertisements">Advertisements</text>
+		<text name="Advertisement">Advertisement</text>
+		<text name="Photos">Photos</text>
+		<text name="AvailableDate">Available Date</text>
+		<text name="NetPrice">Net Price</text>
+		<text name="Type">Type</text>
+		<text name="HideAddress">Hide Address</text>
+		<text name="HidePreciseLocation">Hide Location</text>
+		<text name="ContactByPhone">Contact By Phone</text>
+		<text name="ContactByEmail">Contact By Email</text>
+		<text name="ContactSiteMessage">Contact Site Message</text>
+		<text name="AddNewHome">Add New Home</text>
+		<text name="AddFromWillhaben">Add From Willhaben</text>
+		<text name="PropertyType">Property Type</text>
+		<text name="Bedrooms">Bedrooms</text>
+		<text name="Bathrooms">Bathrooms</text>
+		<text name="Space">Space</text>
+		<text name="Latitude">Latitude</text>
+		<text name="Longitude">Longitude</text>
 	</texts>
 </localizationDictionary>

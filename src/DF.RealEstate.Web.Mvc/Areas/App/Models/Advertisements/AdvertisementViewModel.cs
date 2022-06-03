@@ -9,5 +9,6 @@ namespace DF.RealEstate.Web.Areas.App.Models.Advertisements
     public class AdvertisementViewModel
     {
         public AdvertisementType Type { get; set; }
+        public string FilterText { get; set; }
     }
 }

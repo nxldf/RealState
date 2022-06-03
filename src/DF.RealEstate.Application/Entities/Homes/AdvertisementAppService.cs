@@ -31,7 +31,8 @@ namespace DF.RealEstate.Entities.Homes
         public async Task<PagedResultDto<AdvertisementListDto>> GetAll(GetAllAdvertisementInput input)
         {
             var query = _advertisementRepository.GetAll().
-                WhereIf(input.Type.HasValue, x => x.Type == input.Type);
+                WhereIf(input.Type.HasValue, x => x.Type == input.Type)
+                .WhereIf(!string.IsNullOrEmpty(input.Filter),x=>x.Type == input.Type);
 
             var cnt = await query.CountAsync();
             var data = await query.OrderBy(input.Sorting).PageBy(input).ToListAsync();

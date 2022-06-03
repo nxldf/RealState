@@ -1,0 +1,58 @@
+﻿@using DF.RealEstate.Web.Areas.App.Models.Advertisements
+@using DF.RealEstate.Entities;
+
+@model AdvertisementViewModel
+
+
+@section Scripts
+{
+    <script src="/view-resources/Areas/App/Views/Advertisements/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <abp-page-subheader title="@L("Advertisements")" description="">
+
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="form">
+                    <div class="row mb-4">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="form-group">
+                                <label for="Type">@L("Type")</label>
+                                <select id="Type" name="Type" class="form-control col-md-12" asp-for="Type">
+                                    <option value="" selected="selected">@L("All")</option>
+                                    @foreach (var type in Enum.GetValues<AdvertisementType>())
+                                    {
+                                        <option value="@((int)type)" selected>@type</option>
+                                    }
+                                    <option value="" selected="selected" disabled hidden>@L("All")</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="align-items-center">
+                    <table id="DataTable" class="display table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>@L("AvailableDate")</th>
+                                <th>@L("NetPrice")</th>
+                                <th>@L("Type")</th>
+                                <th>@L("HideAddress")</th>
+                                <th>@L("HidePreciseLocation")</th>
+                                <th>@L("ContactByPhone")</th>
+                                <th>@L("ContactByEmail")</th>
+                                <th>@L("ContactSiteMessage")</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

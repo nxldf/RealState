@@ -23,25 +23,25 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="form">
-                    <div class="form-group">
+                <div class="form-group row">
 
-                        <div class="text-right ">
-                            <button id="CreateNewBtn" class="btn btn-primary form-control  col-md-3">
+                    <label for="Type" class="col-md-1 col-form-label">@L("Type")</label>
+                    <select id="Type" name="Type" class="form-control bs-select col-md-3" asp-for="Type" title="Choose One Of The Following...">
+                        <option value="" selected>@L("All")</option>
+                        @foreach (var type in Enum.GetValues<AdvertisementType>())
+                        {
+                            <option value="@((int)type)">@type</option>
+                        }
+
+                    </select>
+                    <div class="col-md-6"></div>
+                        <div class="text-right">
+                            <button id="CreateNewBtn" class="btn btn-primary form-control " tabindex="1">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 <i class="fa fa-plus"></i> @L("AddNewAdvertisement")
+
                             </button>
                         </div>
-
-                        <label for="Type">@L("Type")</label>
-                        <select id="Type" name="Type" class="form-control bs-select col-md-4" asp-for="Type" title="Choose One Of The Following...">
-                            <option value="" selected)">@L("All")</option>
-                            @foreach (var type in Enum.GetValues<AdvertisementType>())
-                            {
-                                <option value="@((int)type)">@type</option>
-                            }
-
-                        </select>
-                    </div>
                 </div>
                 <div class="align-items-center">
                     <table id="DataTable" class="display table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap">
