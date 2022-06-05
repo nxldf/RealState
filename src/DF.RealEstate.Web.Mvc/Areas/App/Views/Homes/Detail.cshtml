@@ -35,10 +35,10 @@
                         <div class="card card-custom card-stretch gutter-b">
                             <div class="card-header card-header-tabs-line">
                                 <div class="card-title">
-                                    <h3 class="card-title font-weight-bolder text-dark">@L("EditInformation")</h3>
+                                    <h3>@Model.Name</h3>
                                 </div>
                                 <div class="card-toolbar">
-                                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = (int)Model.Id.Value, Title = "Detail" })
+                                    @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = (int)Model.Id.Value, Title = Model.Name })
                                 </div>
                             </div>
                             <div class="card-body pt-2">

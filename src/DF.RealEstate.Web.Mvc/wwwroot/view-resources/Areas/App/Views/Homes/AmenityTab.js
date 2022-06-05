@@ -4,10 +4,8 @@
     var newdiv = '';
     _homeId = $("#HomeId").val();
     // i Sholud change value 1 to _homeId
-    console.log(_homeId);
     _mService.getSelectedAmenities(_homeId).done(function (info) {
         $.each(info, function (i, p) {
-
             if (p.selected)
                 newdiv += '<label class="checkbox checkbox-success col-md-3"><input type="checkbox" value=' + p.id + ' name="' + p.title + '" checked="'+p.selected+'" /><span></span>' + p.title + '</label>';
             if (!p.selected)
@@ -40,6 +38,7 @@
         }
         info.Amenities = input;
         info.Id = _homeId;
+        console.log(info);
         _mService.addOrEditAmenities(info).done(function () {
             abp.notify.info(app.localize('SavedSuccessfully'));            
         }).always(function () {

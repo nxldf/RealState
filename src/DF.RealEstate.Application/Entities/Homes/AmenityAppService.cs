@@ -22,13 +22,16 @@ namespace DF.RealEstate.Entities.Homes
     public class AmenityAppService : RealEstateAppServiceBase, IAmenityAppService
     {
         private readonly IRepository<Amenity> _amenityRepository;
+        private readonly IRepository<HomeAmenity> _homeAmenityRepository;
         private readonly IRepository<Home, long> _homeRepository;
 
         public AmenityAppService(IRepository<Amenity> amenityRepository,
-            IRepository<Home, long> homeRepository)
+            IRepository<Home, long> homeRepository,
+            IRepository<HomeAmenity> homeAmenityRepository)
         {
             _amenityRepository = amenityRepository;
             _homeRepository = homeRepository;
+            _homeAmenityRepository = homeAmenityRepository;
         }
 
         [AbpAuthorize(AppPermissions.Pages_Administration_Amenities)]
@@ -109,7 +112,12 @@ namespace DF.RealEstate.Entities.Homes
             var query = await _amenityRepository.GetAllIncluding(x => x.Translations, y => y.Homes).
                 DefaultIfEmpty().ToListAsync();
 
-            var a = query.Select(x => x.Homes.Select(y => y.HomeId == id).FirstOrDefault()).ToList();
+            //var a = query.Select(x => x.Homes.Select(y => y.HomeId == id)).ToList();       
+            var a = query.Select(x => x.Homes.Any(y => y.HomeId == id)).ToList();
+            //var a = query.Select(x => x.Homes.Select(y => y.HomeId == id).FirstOrDefault(x=>x)).ToList();
+            
+
+            var getAmentyId = _homeAmenityRepository.GetAll().Where(x=>x.HomeId == id).ToList();
 
             var mappedData = ObjectMapper.Map<List<AmenityListDto>>(query);
             var result = mappedData.Select(x => new IdTitleDto

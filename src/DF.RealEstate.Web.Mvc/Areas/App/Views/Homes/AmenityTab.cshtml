@@ -7,14 +7,14 @@
 {
     <script src="/view-resources/Areas/App/Views/Homes/AmenityTab.js" asp-append-version="true"></script>
 }
-<input type="hidden" id="HomeId" name="HomeId" value="@ViewBag.HomeId" />
-<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <input type="hidden" id="HomeId" name="HomeId" value="@ViewBag.HomeId" />
     <div class="@(await GetContainerClass())">
         <div class="card card-custom gutter-b">
             <div class="card-header card-header-tabs-line">
                 <div class="card-title">
-                    <h3>@L("Amenities")</h3>
+                    <h3>@ViewBag.HomeName</h3>
                 </div>
                 <div class="card-toolbar">
                     @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = @ViewBag.HomeId, Title = "Amenity" })

@@ -15,7 +15,7 @@
         <div class="card card-custom gutter-b">
             <div class="card-header card-header-tabs-line">
                 <div class="card-title">
-                    <h3>@L("Advertisements")</h3>
+                    <h3>@ViewBag.HomeName</h3>
                 </div>
                 <div class="card-toolbar">
                     @await Html.PartialAsync("_DetailMenu.cshtml", new DF.RealEstate.Dto.IdTitleDto { Id = @ViewBag.HomeId, Title = "Advertisement" })

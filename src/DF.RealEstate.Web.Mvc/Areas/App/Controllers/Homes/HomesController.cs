@@ -53,24 +53,30 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
             var output = await _homeAppService.GetHomeForEdit(new NullableIdDto<long>() { Id = id });
             var model = ObjectMapper.Map<GetForEditHomeModel>(output);
             return View(model);
-        }   
+        }
 
-        public  ActionResult AdvertisementTab(long? id)
+        public async Task<ActionResult> AdvertisementTab(long? id)
         {
+            var output = await _homeAppService.GetHomeForEdit(new NullableIdDto<long>() { Id = id });
+            ViewBag.HomeName = output.Name;
             if (id.HasValue)
                 ViewBag.HomeId = id;
             return View();
         }
 
-        public ActionResult AmenityTab(long? id)
+        public async Task<ActionResult> AmenityTab(long? id)
         {
+            var output = await _homeAppService.GetHomeForEdit(new NullableIdDto<long>() { Id = id });
+            ViewBag.HomeName = output.Name;
             if (id.HasValue)
                 ViewBag.HomeId = id;
             return View();
-        }   
-        
-        public ActionResult PhotoTab(long? id)
+        }
+
+        public async Task<ActionResult> PhotoTab(long? id)
         {
+            var output = await _homeAppService.GetHomeForEdit(new NullableIdDto<long>() { Id = id });
+            ViewBag.HomeName = output.Name;
             if (id.HasValue)
                 ViewBag.HomeId = id;
             return View();
@@ -86,14 +92,14 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
             return PartialView("_AddFromWillhabenModal");
         }
 
-        public PartialViewResult CreateOrEditOnMap(decimal latitude, decimal longitude )
+        public PartialViewResult CreateOrEditOnMap(decimal latitude, decimal longitude)
         {
             ViewBag.Latitude = latitude;
             ViewBag.Longitude = longitude;
             return PartialView("_CreateOrEditOnMap");
-        } 
+        }
 
-        public async  Task<PartialViewResult> CreateOrEditPhotoModal(int? Id, long? homeId)
+        public async Task<PartialViewResult> CreateOrEditPhotoModal(int? Id, long? homeId)
         {
 
             if (!Id.HasValue && !homeId.HasValue)
@@ -108,14 +114,14 @@ namespace DF.RealEstate.Web.Areas.App.Controllers.Homes
             return PartialView("_CreateOrEditPhotoModal", model);
         }
 
-        public async Task<PartialViewResult> CreateOrEditAdvertisementModal(int? id ,long? homeId )
+        public async Task<PartialViewResult> CreateOrEditAdvertisementModal(int? id, long? homeId)
         {
             if (!id.HasValue && !homeId.HasValue)
                 throw new UserFriendlyException("Id And HomeId Are Null ");
             ViewBag.HomeId = homeId;
             var output = await _advertisementAppService.GetForEdit(new NullableIdDto() { Id = id });
             var model = ObjectMapper.Map<GetForEditAdvertisementModel>(output);
-            return PartialView("_CreateOrEditAdvertisementModal",model);
+            return PartialView("_CreateOrEditAdvertisementModal", model);
         }
     }
 }

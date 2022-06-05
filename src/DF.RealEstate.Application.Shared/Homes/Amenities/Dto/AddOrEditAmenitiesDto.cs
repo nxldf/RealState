@@ -8,5 +8,8 @@ namespace DF.RealEstate.Homes.Amenities.Dto
     public class AddOrEditAmenitiesDto : NullableIdDto<long>
     {
         public int[] Amenities { get; set; }
+        //public long HomeId { get; set; }
+
+
     }
 }
